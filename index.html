@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Memo Share</title>
-  </head>
-  <body>
-    <textarea id="memo" rows="10" cols="50"></textarea>
-    <br />
-    <button onclick="shareMemo()">Share Memo</button>
-    <br />
-    <div id="url"></div>
-    <script>
-      function shareMemo() {
-        var memo = document.getElementById("memo").value;
-        var url = "https://nagatochyan.github.io/pastabin/index.html?memo=" + encodeURIComponent(memo);
-        document.getElementById("url").innerHTML = "Share this URL: <a href='" + url + "'>" + url + "</a>";
-      }
-    </script>
-  </body>
+<head>
+  <title>メモ共有アプリ</title>
+</head>
+<body>
+  <h1>メモ共有アプリ</h1>
+  <textarea id="memo" rows="10" cols="50"></textarea><br>
+  <button onclick="share()">共有する</button>
+  <p id="result"></p>
+
+  <script>
+    function share() {
+      const memo = document.getElementById('memo').value;
+      const url = window.location.href + '?memo=' + encodeURIComponent(memo);
+      const result = document.getElementById('result');
+      result.innerHTML = '以下のURLをコピーして共有してください：<br>' + url;
+    }
+
+    // URLパラメータからmemoの値を取得してテキストエリアに表示する
+    const urlParams = new URLSearchParams(window.location.search);
+    const memo = urlParams.get('memo');
+    if (memo) {
+      document.getElementById('memo').value = decodeURIComponent(memo);
+    }
+  </script>
+</body>
 </html>
