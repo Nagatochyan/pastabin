@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Memo Share</title>
+  </head>
+  <body>
+    <textarea id="memo" rows="10" cols="50"></textarea>
+    <br />
+    <button onclick="shareMemo()">Share Memo</button>
+    <br />
+    <div id="url"></div>
+    <script>
+      function shareMemo() {
+        var memo = document.getElementById("memo").value;
+        var url = "https://example.com/memo.html?memo=" + encodeURIComponent(memo);
+        document.getElementById("url").innerHTML = "Share this URL: <a href='" + url + "'>" + url + "</a>";
+      }
+    </script>
+  </body>
+</html>
